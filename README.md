@@ -1,2 +1,2 @@
 # pr-testing
-Test pull requests
+Test pull requests in Jenkins

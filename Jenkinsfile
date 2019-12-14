@@ -18,6 +18,7 @@ pipeline {
       steps {
         sh 'printenv'
         sh 'java -version'
+        sh 'sleep 300'
       }
     }
   }

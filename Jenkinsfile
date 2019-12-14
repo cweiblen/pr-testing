@@ -17,6 +17,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'printenv'
+        sh 'java -version'
       }
     }
   }

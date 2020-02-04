@@ -1,6 +1,6 @@
 def boolean hasChangesIn(String module) {
     if (env.CHANGE_TARGET == null) {
-        return true;
+        return false;
     }
 
     def MASTER = sh(

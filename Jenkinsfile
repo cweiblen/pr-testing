@@ -45,12 +45,38 @@ pipeline {
         sh 'printenv | sort'
       }
     }
-    stage('Changelog')  {
+    stage('hasChanges')  {
       when {
         expression { return hasChangesIn('Jenkinsfile') }
       }
       steps {
         echo 'Jenkinsfile has changes'
+      }
+    }
+    stage('changeset') {
+      when {
+        changeset 'Jenkinsfile'
+      }
+      steps {
+        echo 'changeset includes Jenkinsfile'
+      }
+    }
+    stage('either') {
+      when { anyOf {
+        expression { return hasChangesIn('Jenkinsfile') }
+        changeset 'Jenkinsfile'
+      }}
+      steps {
+        echo 'either'
+      }
+    }
+    stage('both') {
+      when { allOf {
+        expression { return hasChangesIn('Jenkinsfile') }
+        changeset 'Jenkinsfile'
+      }}
+      steps {
+        echo 'both'
       }
     }
   }
